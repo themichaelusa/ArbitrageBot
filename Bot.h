@@ -2,25 +2,26 @@
 #define BOT_H
 
 #include "Position/Position.h"
+#include "ExchangeAPI/ExchangeAPI.h"
 #include <utility> 
 #include <string>
 
 class Bot {
 	public:
-		Bot(std::string exchange1, std::string exchange2);
+		Bot(std::string exchange1, std::string exchange2, double quantity);
+		~Bot();
 		void startBot(long endTime);
 		void startBot(int numTrades);
 
 	private:	
+		ExchangeAPI* ex1_; //LONG EXCHANGE
+		ExchangeAPI* ex2_; //SHORT EXCHANGE
+		double quantity_;
 
-		std::string ex1_;
-		std::string ex2_;
-
-		double getExchangeSpread();
-		bool isProfitableSpread();
+		bool isProfitableSpread(double spot1, double spot2);
 		std::pair<Position, bool> tryArbitrage();
-		Position executeArbitrage();
-		void writeToTXT(Position p);
+		Position executeArbitrage(double spot1, double spot2);
+		void writeToTextFile(Position p);
 };
 
 #endif
