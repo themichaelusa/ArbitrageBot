@@ -1,11 +1,15 @@
 #ifndef EXCHANGE_H
 #define EXCHANGE_H
 
+#include <string>
+
 class ExchangeAPI{
 	public:
 		ExchangeAPI();
-		~ExchangeAPI();
+		virtual ~ExchangeAPI();
+		virtual double getQuantity();
 		virtual double getCommission();
+		
 		virtual double getSpotPrice() = 0;
 		virtual void goShort() = 0;
 		virtual void goLong() = 0;

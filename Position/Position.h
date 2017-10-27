@@ -10,6 +10,7 @@ struct Position {
 	std::time_t completionTime;
 	bool isComplete;
 
+	Position() {}
 	Position(double quantity, double shortPrice, double longPrice): 
 		q(quantity), sP(shortPrice), lP(longPrice) {}
 };

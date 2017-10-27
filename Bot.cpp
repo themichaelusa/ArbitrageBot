@@ -25,7 +25,7 @@ void Bot::startBot(long endTime){
     while(std::time(nullptr) < endTime){
 		std::pair<Position, bool> potentialArb = tryArbitrage();
 		if (std::get<1>(potentialArb) == true){
-			writeToTextFile(tradeData);
+			writeToTextFile(std::get<0>(potentialArb));
 		} 
     }
 }
@@ -36,7 +36,7 @@ void Bot::startBot(int numTrades){
     while(totalTrades < numTrades){
 		std::pair<Position, bool> potentialArb = tryArbitrage();
 		if (std::get<1>(potentialArb) == true){
-			writeToTextFile(tradeData);
+			writeToTextFile(std::get<0>(potentialArb));
 			totalTrades++;   
 		} 
     }
@@ -49,23 +49,19 @@ std::pair<Position, bool> Bot::tryArbitrage(){
 
 	if(isProfitableSpread(e1Spot, e2Spot)){
 		Position tradeData = executeArbitrage(e1Spot, e2Spot);
-		tradeData.completionTime = std::time(nullptr);
-
-		//TODO: Check API's for complete position and that funds are settled
-		tradeData.isComplete = true;
-		return std::pair<Position, bool> p(tradeData, true);
+		return std::pair<Position,bool>(tradeData, true);
 	}
 	else {
-		return std::pair<Position, bool> p(Position(), false);
+		return std::pair<Position,bool>(Position(), false);
 	}
 }
 
 void Bot::writeToTextFile(Position p){
 	std::string pos = "";
-	pos += ((std:string)p.q + ",");
-	pos += ((std:string)p.sP + ",");
-	pos += ((std:string)p.lP + ",");
-	pos += ((std:string)p.completionTime + "\n");
+	pos += (std::to_string(p.q) + ",");
+	pos += (std::to_string(p.sP) + ",");
+	pos += (std::to_string(p.lP) + ",");
+	pos += ((std::to_string(p.completionTime) + "\n"));
 
 	std::cin >> pos;
     std::ofstream out("closedPositions.txt");
@@ -75,7 +71,11 @@ void Bot::writeToTextFile(Position p){
 Position Bot::executeArbitrage(double spot1, double spot2){
 	//TODO: IMPLEMENT ARBITRAGE
 	ex1_->goLong(); ex2_->goShort();
-	return Position(quantity_, spot1, spot2);
+	//TODO: VERIFY FUNDS ARE SETTLED
+	Position tradeData(quantity_, spot1, spot2);
+	tradeData.completionTime = std::time(nullptr);
+	tradeData.isComplete = true;
+	return tradeData;
 }
 
 bool Bot::isProfitableSpread(double spot1, double spot2){
