@@ -7,9 +7,10 @@ class ExchangeAPI{
 	public:
 		ExchangeAPI();
 		virtual ~ExchangeAPI();
-		virtual double getQuantity();
-		virtual double getCommission();
-		
+		double getQuantity();
+		double getCommission();
+
+		virtual void updateCommission() = 0;
 		virtual double getSpotPrice() = 0;
 		virtual void goShort() = 0;
 		virtual void goLong() = 0;

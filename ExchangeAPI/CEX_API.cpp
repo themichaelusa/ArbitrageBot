@@ -12,3 +12,33 @@ void CEX_API::goLong(){
 void CEX_API::goShort(){
 	
 }
+
+void CEX_API::updateCommission(){
+
+}
+
+void CEX_API::updateCommission(){
+
+}
+
+double CEX_API::getSpotPrice(){
+
+}
+void CEX_API::goShort(){
+
+}
+
+void CEX_API::goLong(){
+
+}
+
+void CEX_API::setKey(){
+
+}
+void CEX_API::setNonce(){
+
+}
+void CEX_API::setSignature(){
+
+}
+

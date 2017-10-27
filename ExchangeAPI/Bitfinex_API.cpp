@@ -12,3 +12,32 @@ void Bitfinex_API::goLong(){
 void Bitfinex_API::goShort(){
 	
 }
+
+void Bitfinex_API::updateCommission(){
+	
+}
+
+void Bitfinex_API::updateCommission(){
+
+}
+
+double Bitfinex_API::getSpotPrice(){
+
+}
+void Bitfinex_API::goShort(){
+
+}
+
+void Bitfinex_API::goLong(){
+
+}
+
+void Bitfinex_API::setKey(){
+
+}
+void Bitfinex_API::setNonce(){
+
+}
+void Bitfinex_API::setSignature(){
+
+}

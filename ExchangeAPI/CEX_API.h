@@ -7,6 +7,7 @@ class CEX_API: public ExchangeAPI{
 	public:
 		CEX_API();
 		~CEX_API();
+		
 };
 
 #endif
