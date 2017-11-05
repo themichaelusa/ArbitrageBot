@@ -4,14 +4,17 @@
 #include "CEX_API.h"
 #include <string>
 
-ExchangeWrapper::ExchangeWrapper(){}
-ExchangeWrapper::~ExchangeWrapper(){}
+//ExchangeWrapper::ExchangeWrapper(){}
+//ExchangeWrapper::~ExchangeWrapper(){}
 
 ExchangeAPI* ExchangeWrapper::operator()(std::string s, double quantity) const {
 	if (s == "BFX"){
 		return new Bitfinex_API(quantity);
 	}
-	if (s == "CEX"){
+	else if (s == "CEX"){
 		return new CEX_API(quantity);
+	}
+	else {
+		return nullptr;
 	}
 }

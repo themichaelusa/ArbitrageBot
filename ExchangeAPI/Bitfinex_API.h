@@ -5,8 +5,18 @@
 
 class Bitfinex_API: public ExchangeAPI{
 	public:
-		Bitfinex_API();
+		Bitfinex_API(double quantity);
 		~Bitfinex_API();
+
+		void updateCommission();
+		double getSpotPrice();
+		void goShort();
+		void goLong();
+
+	protected:
+		void setKey();
+		void setNonce();
+		void setSignature();
 };
 
 #endif

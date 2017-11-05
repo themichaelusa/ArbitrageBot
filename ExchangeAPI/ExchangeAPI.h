@@ -6,9 +6,9 @@
 class ExchangeAPI{
 	public:
 		ExchangeAPI();
-		virtual ~ExchangeAPI();
-		double getQuantity();
-		double getCommission();
+		virtual ~ExchangeAPI() = default;
+		virtual double getQuantity();
+		virtual double getCommission();
 
 		virtual void updateCommission() = 0;
 		virtual double getSpotPrice() = 0;
